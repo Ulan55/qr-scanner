@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 40px;
+      background: #f0f0f0;
+    }
+    #reader {
+      width: 300px;
+      margin: auto;
+    }
+    #result {
+      margin-top: 20px;
+      color: green;
+      font-size: 18px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h2>QR Code Scanner</h2>
+  <div id="reader"></div>
+  <div id="result">QR кодты камераға жақындат</div>
+
+  <script>
+    function onScanSuccess(decodedText) {
+      document.getElementById('result').innerText = "Нәтиже: " + decodedText;
+      html5QrcodeScanner.clear();
+    }
+
+    const html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess);
+  </script>
+</body>
+</html>
